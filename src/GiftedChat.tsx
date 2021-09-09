@@ -134,6 +134,7 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> {
   /* optional prop used to place customView below text, image and video views; default is false */
   isCustomViewBottom?: boolean
   /* infinite scroll up when reach the top of messages container, automatically call onLoadEarlier function if exist */
+  preventAutoScrolling?: boolean
   infiniteScroll?: boolean
   timeTextStyle?: LeftRightStyle<TextStyle>
   /* Custom action sheet */
@@ -367,6 +368,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     maxComposerHeight: PropTypes.number,
     alignTop: PropTypes.bool,
     wrapInSafeArea: PropTypes.bool,
+    preventAutoScrolling: PropTypes.bool,
   }
 
   static append<TMessage extends IMessage>(
@@ -460,6 +462,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
       inverted === false &&
       messages &&
       prevProps.messages &&
+      !this.props.preventAutoScrolling &&
       messages.length !== prevProps.messages.length
     ) {
       setTimeout(() => this.scrollToBottom(false), 200)

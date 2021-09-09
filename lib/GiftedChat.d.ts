@@ -63,6 +63,7 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> {
     optionTintColor?: string;
     quickReplyStyle?: StyleProp<ViewStyle>;
     isCustomViewBottom?: boolean;
+    preventAutoScrolling?: boolean;
     infiniteScroll?: boolean;
     timeTextStyle?: LeftRightStyle<TextStyle>;
     actionSheet?(): {
@@ -244,6 +245,7 @@ declare class GiftedChat<TMessage extends IMessage = IMessage> extends React.Com
         maxComposerHeight: PropTypes.Requireable<number>;
         alignTop: PropTypes.Requireable<boolean>;
         wrapInSafeArea: PropTypes.Requireable<boolean>;
+        preventAutoScrolling: PropTypes.Requireable<boolean>;
     };
     static append<TMessage extends IMessage>(currentMessages: TMessage[] | undefined, messages: TMessage[], inverted?: boolean): TMessage[];
     static prepend<TMessage extends IMessage>(currentMessages: TMessage[] | undefined, messages: TMessage[], inverted?: boolean): TMessage[];

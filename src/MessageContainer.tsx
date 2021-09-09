@@ -87,6 +87,7 @@ export interface MessageContainerProps<TMessage extends IMessage> {
   onQuickReply?(replies: Reply[]): void
   infiniteScroll?: boolean
   isLoadingEarlier?: boolean
+  preventAutoScrolling?: boolean
 }
 
 interface State {
@@ -117,6 +118,7 @@ export default class MessageContainer<
     scrollToBottomStyle: {},
     infiniteScroll: false,
     isLoadingEarlier: false,
+    preventAutoScrolling: false,
   }
 
   static propTypes = {
@@ -139,6 +141,7 @@ export default class MessageContainer<
     alignTop: PropTypes.bool,
     scrollToBottomStyle: StylePropType,
     infiniteScroll: PropTypes.bool,
+    preventAutoScrolling: PropTypes.bool,
   }
 
   state = {
@@ -298,6 +301,7 @@ export default class MessageContainer<
 
   onLayoutList = () => {
     if (
+      !this.props.preventAutoScrolling &&
       !this.props.inverted &&
       !!this.props.messages &&
       this.props.messages!.length
