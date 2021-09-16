@@ -28,6 +28,7 @@ export interface MessageContainerProps<TMessage extends IMessage> {
     infiniteScroll?: boolean;
     isLoadingEarlier?: boolean;
     preventAutoScrolling?: boolean;
+    atBottomStateChange?(atBottom: boolean): void;
 }
 interface State {
     showScrollBottom: boolean;
@@ -53,6 +54,7 @@ export default class MessageContainer<TMessage extends IMessage = IMessage> exte
         alignTop: boolean;
         scrollToBottomStyle: {};
         infiniteScroll: boolean;
+        atBottomStateChange: () => void;
         isLoadingEarlier: boolean;
         preventAutoScrolling: boolean;
     };
@@ -77,6 +79,7 @@ export default class MessageContainer<TMessage extends IMessage = IMessage> exte
         scrollToBottomStyle: PropTypes.Requireable<number | boolean | object>;
         infiniteScroll: PropTypes.Requireable<boolean>;
         preventAutoScrolling: PropTypes.Requireable<boolean>;
+        atBottomStateChange: PropTypes.Requireable<(...args: any[]) => any>;
     };
     state: {
         showScrollBottom: boolean;

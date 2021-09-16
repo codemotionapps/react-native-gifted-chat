@@ -244,6 +244,7 @@ declare class GiftedChat<TMessage extends IMessage = IMessage> extends React.Com
         minComposerHeight: PropTypes.Requireable<number>;
         maxComposerHeight: PropTypes.Requireable<number>;
         alignTop: PropTypes.Requireable<boolean>;
+        atBottomStateChange: PropTypes.Requireable<(...args: any[]) => any>;
         wrapInSafeArea: PropTypes.Requireable<boolean>;
         preventAutoScrolling: PropTypes.Requireable<boolean>;
     };

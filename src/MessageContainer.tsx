@@ -88,6 +88,7 @@ export interface MessageContainerProps<TMessage extends IMessage> {
   infiniteScroll?: boolean
   isLoadingEarlier?: boolean
   preventAutoScrolling?: boolean
+  atBottomStateChange?(atBottom: boolean): void
 }
 
 interface State {
@@ -117,6 +118,7 @@ export default class MessageContainer<
     alignTop: false,
     scrollToBottomStyle: {},
     infiniteScroll: false,
+    atBottomStateChange: () => {},
     isLoadingEarlier: false,
     preventAutoScrolling: false,
   }
@@ -142,6 +144,7 @@ export default class MessageContainer<
     scrollToBottomStyle: StylePropType,
     infiniteScroll: PropTypes.bool,
     preventAutoScrolling: PropTypes.bool,
+    atBottomStateChange: PropTypes.func,
   }
 
   state = {
@@ -204,8 +207,11 @@ export default class MessageContainer<
     if (this.props.inverted) {
       if (contentOffsetY > scrollToBottomOffset!) {
         this.setState({ showScrollBottom: true, hasScrolled: true })
+        if (this.props.atBottomStateChange)
+          this.props.atBottomStateChange(false)
       } else {
         this.setState({ showScrollBottom: false, hasScrolled: true })
+        if (this.props.atBottomStateChange) this.props.atBottomStateChange(true)
       }
     } else {
       if (
@@ -213,8 +219,11 @@ export default class MessageContainer<
         contentSizeHeight - layoutMeasurementHeight > scrollToBottomOffset!
       ) {
         this.setState({ showScrollBottom: true, hasScrolled: true })
+        if (this.props.atBottomStateChange)
+          this.props.atBottomStateChange(false)
       } else {
         this.setState({ showScrollBottom: false, hasScrolled: true })
+        if (this.props.atBottomStateChange) this.props.atBottomStateChange(true)
       }
     }
   }

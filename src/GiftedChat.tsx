@@ -367,6 +367,7 @@ class GiftedChat<TMessage extends IMessage = IMessage> extends React.Component<
     minComposerHeight: PropTypes.number,
     maxComposerHeight: PropTypes.number,
     alignTop: PropTypes.bool,
+    atBottomStateChange: PropTypes.func,
     wrapInSafeArea: PropTypes.bool,
     preventAutoScrolling: PropTypes.bool,
   }
