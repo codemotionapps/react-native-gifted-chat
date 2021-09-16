@@ -207,23 +207,29 @@ export default class MessageContainer<
     if (this.props.inverted) {
       if (contentOffsetY > scrollToBottomOffset!) {
         this.setState({ showScrollBottom: true, hasScrolled: true })
-        if (this.props.atBottomStateChange)
+        if (this.props.atBottomStateChange) {
           this.props.atBottomStateChange(false)
+        }
       } else {
         this.setState({ showScrollBottom: false, hasScrolled: true })
-        if (this.props.atBottomStateChange) this.props.atBottomStateChange(true)
+        if (this.props.atBottomStateChange) {
+          this.props.atBottomStateChange(true)
+        }
       }
     } else {
       if (
-        contentOffsetY < scrollToBottomOffset! &&
-        contentSizeHeight - layoutMeasurementHeight > scrollToBottomOffset!
+        contentSizeHeight - layoutMeasurementHeight - contentOffsetY >
+        scrollToBottomOffset!
       ) {
         this.setState({ showScrollBottom: true, hasScrolled: true })
-        if (this.props.atBottomStateChange)
+        if (this.props.atBottomStateChange) {
           this.props.atBottomStateChange(false)
+        }
       } else {
         this.setState({ showScrollBottom: false, hasScrolled: true })
-        if (this.props.atBottomStateChange) this.props.atBottomStateChange(true)
+        if (this.props.atBottomStateChange) {
+          this.props.atBottomStateChange(true)
+        }
       }
     }
   }
